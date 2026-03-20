@@ -357,14 +357,18 @@ const Admin = () => {
         </div>
 
         <div className="space-y-3">
-          {sorted.map((section) => (
-            <SectionEditor
-              key={section.id}
-              section={section}
-              onSave={(data) => handleSave(section.section_key, data)}
-              saving={updateSection.isPending}
-            />
-          ))}
+          {sorted.length === 0 ? (
+            <p className="text-sm text-muted-foreground py-12 text-center">No sections found. Content may not have been seeded yet.</p>
+          ) : (
+            sorted.map((section) => (
+              <SectionEditor
+                key={section.id}
+                section={section}
+                onSave={(data) => handleSave(section.section_key, data)}
+                saving={updateSection.isPending}
+              />
+            ))
+          )}
         </div>
       </div>
     </main>
