@@ -279,7 +279,7 @@ function Field({
 
 const Admin = () => {
   const { user, loading: authLoading, signOut } = useAuth();
-  const { data: sections, isLoading } = usePageSections();
+  const { data: sections, isLoading, isError, error: fetchError, refetch } = usePageSections();
   const updateSection = useUpdateSection();
   const navigate = useNavigate();
 
@@ -299,7 +299,24 @@ const Admin = () => {
 
   if (!user) return null;
 
-  const sorted = sections
+  if (isError) {
+    return (
+      <main className="min-h-screen bg-background flex items-center justify-center px-6">
+        <div className="text-center max-w-[360px]">
+          <p className="text-sm text-destructive mb-1">Failed to load sections</p>
+          <p className="text-xs text-muted-foreground mb-4">{fetchError?.message || "An unexpected error occurred."}</p>
+          <button
+            onClick={() => refetch()}
+            className="h-8 px-4 rounded border border-input text-xs text-muted-foreground hover:text-foreground transition-colors"
+          >
+            Retry
+          </button>
+        </div>
+      </main>
+    );
+  }
+
+  const sorted = sections?.length
     ? [...sections].sort((a, b) => SECTION_ORDER.indexOf(a.section_key) - SECTION_ORDER.indexOf(b.section_key))
     : [];
 
@@ -340,14 +357,18 @@ const Admin = () => {
         </div>
 
         <div className="space-y-3">
-          {sorted.map((section) => (
-            <SectionEditor
-              key={section.id}
-              section={section}
-              onSave={(data) => handleSave(section.section_key, data)}
-              saving={updateSection.isPending}
-            />
-          ))}
+          {sorted.length === 0 ? (
+            <p className="text-sm text-muted-foreground py-12 text-center">No sections found. Content may not have been seeded yet.</p>
+          ) : (
+            sorted.map((section) => (
+              <SectionEditor
+                key={section.id}
+                section={section}
+                onSave={(data) => handleSave(section.section_key, data)}
+                saving={updateSection.isPending}
+              />
+            ))
+          )}
         </div>
       </div>
     </main>
