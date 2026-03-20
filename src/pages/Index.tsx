@@ -90,14 +90,14 @@ const footerContent = {
 
 const Index = () => {
   return (
-    <main className="min-h-screen bg-background text-foreground">
-      <div className="mx-auto max-w-[750px] px-6 py-16 sm:py-24 md:py-32">
+    <main className="min-h-screen bg-background text-foreground selection:bg-foreground/10">
+      <div className="mx-auto max-w-[720px] px-6 sm:px-8 py-12 sm:py-20 md:py-28">
         <HeroSection {...heroContent} />
         <IntroSection {...introContent} />
 
-        <div className="space-y-16 sm:space-y-20">
-          {projects.map((project) => (
-            <ProjectSection key={project.title} {...project} />
+        <div className="space-y-14 sm:space-y-20">
+          {projects.map((project, i) => (
+            <ProjectSection key={project.title} index={i + 1} {...project} />
           ))}
         </div>
 

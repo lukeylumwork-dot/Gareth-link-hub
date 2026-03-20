@@ -4,8 +4,8 @@ interface FooterSectionProps {
 }
 
 export const FooterSection = ({ name, year }: FooterSectionProps) => (
-  <footer className="pt-8 border-t border-border">
-    <p className="text-sm text-muted-foreground">
+  <footer className="pt-10 border-t border-foreground/8">
+    <p className="text-xs text-muted-foreground/50 tracking-wide">
       © {year} {name}
     </p>
   </footer>
