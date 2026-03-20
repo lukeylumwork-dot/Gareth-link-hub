@@ -14,7 +14,36 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      page_sections: {
+        Row: {
+          content: Json
+          created_at: string
+          id: string
+          notes: string | null
+          section_key: string
+          status: Database["public"]["Enums"]["section_status"]
+          updated_at: string
+        }
+        Insert: {
+          content?: Json
+          created_at?: string
+          id?: string
+          notes?: string | null
+          section_key: string
+          status?: Database["public"]["Enums"]["section_status"]
+          updated_at?: string
+        }
+        Update: {
+          content?: Json
+          created_at?: string
+          id?: string
+          notes?: string | null
+          section_key?: string
+          status?: Database["public"]["Enums"]["section_status"]
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
@@ -23,7 +52,7 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      section_status: "draft" | "in_review" | "approved"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +179,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      section_status: ["draft", "in_review", "approved"],
+    },
   },
 } as const
