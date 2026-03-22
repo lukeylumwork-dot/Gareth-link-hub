@@ -1,7 +1,6 @@
 import { HeroSection } from "@/components/sections/HeroSection";
 import { IntroSection } from "@/components/sections/IntroSection";
 import { ProjectSection } from "@/components/sections/ProjectSection";
-import { ConnectingSection } from "@/components/sections/ConnectingSection";
 import { FollowSection } from "@/components/sections/FollowSection";
 import { FooterSection } from "@/components/sections/FooterSection";
 import { usePageSections } from "@/hooks/usePageSections";
@@ -10,59 +9,48 @@ import { usePageSections } from "@/hooks/usePageSections";
 
 const defaults: Record<string, any> = {
   hero: {
-    title: "Gareth's Projects",
-    subtitle: "A collection of current projects spanning short-form debates, founder insight, and audio fiction.",
+    title: "Gareth Parkin",
+    subtitle: "",
   },
   intro: {
-    text: "I spend my time exploring ideas across different formats — from structured debates to practical guidance for founders, to longer-form storytelling. These are the projects I'm currently building and sharing.",
+    text: "I'm building a small set of projects across media, technology, and storytelling. This is a collection of what I'm working on — a podcast, an education platform, and a fiction series. Each is at a different stage. All are ongoing.",
   },
   project_1: {
     title: "Sandalwood & Sage",
-    tagline: "Short-form, evidence-led debates under 15 minutes",
-    description: "Clear, balanced, and engaging conversations on the topics that matter. Each episode takes a single question and examines it from multiple angles — without noise, without filler.",
-    primaryLink: { label: "Listen to latest episode", href: "#" },
+    tagline: "A short-form debate podcast",
+    description:
+      "Two AI-generated presenters. One topic. Both sides, argued properly. Episodes run under fifteen minutes — long enough to be substantive, short enough to respect your time.",
+    primaryLink: { label: "Listen on Spotify", href: "#" },
     secondaryLinks: [
-      { label: "Spotify", href: "#" },
       { label: "Apple Podcasts", href: "#" },
       { label: "YouTube", href: "#" },
       { label: "Website", href: "#" },
-      { label: "Instagram", href: "#" },
     ],
   },
   project_2: {
     title: "The Founder's Academy",
-    tagline: "Practical guidance for SaaS founders and founding teams",
-    description: "Lessons, frameworks, and honest insight drawn from real experience — building, scaling, investing, and exiting. Designed for people doing the work, not just reading about it.",
-    primaryLink: { label: "Learn more", href: "#" },
-    secondaryLinks: [
-      { label: "Website", href: "#" },
-      { label: "LinkedIn", href: "#" },
-      { label: "Register interest", href: "#" },
-    ],
+    tagline: "A platform for SaaS founders",
+    description:
+      "Practical lessons, honest conversations, and real operator insight — drawn from building, scaling, and exiting a SaaS business. Built for founders who want substance over noise.",
+    primaryLink: { label: "Find out more", href: "#" },
+    secondaryLinks: [],
   },
   project_3: {
     title: "The Ardrochronicles",
-    tagline: "Serialised audio fiction exploring technology, sport, and society",
-    description: "A longer-form storytelling project that blends speculative fiction with themes drawn from the real world. Part drama, part thought experiment.",
+    tagline: "Serialised audio fiction",
+    description: "A story set thirty years from now, exploring what technology does to the things we love.",
     statusLine: "Currently in development",
-    primaryLink: { label: "Coming soon", href: "#" },
-    secondaryLinks: [
-      { label: "Register interest", href: "#" },
-      { label: "Subscribe for updates", href: "#" },
-    ],
-  },
-  connecting: {
-    heading: "How these fit together",
-    text: "Each project explores ideas through a different lens and a different format. Debates distil complex topics into focused conversations. The Academy translates experience into something usable. The Ardrochronicles use fiction to ask the questions that are harder to raise directly. Together, they form a body of work around curiosity, clarity, and craft.",
+    primaryLink: null,
+    secondaryLinks: [],
   },
   follow: {
-    heading: "Follow along",
+    heading: "",
     links: [
       { label: "LinkedIn", href: "#" },
-      { label: "Email", href: "mailto:hello@example.com" },
+      { label: "Contact", href: "mailto:hello@example.com" },
     ],
   },
-  footer: { name: "Gareth" },
+  footer: { name: "Gareth Parkin" },
 };
 
 // ─── PAGE ────────────────────────────────────────────
@@ -80,14 +68,13 @@ const Index = () => {
   const p1 = get("project_1");
   const p2 = get("project_2");
   const p3 = get("project_3");
-  const connecting = get("connecting");
   const follow = get("follow");
   const footer = get("footer");
   const projects = [p1, p2, p3];
 
   return (
     <main className="min-h-screen bg-background text-foreground selection:bg-foreground/10">
-      <div className="mx-auto max-w-[720px] px-6 sm:px-8 py-12 sm:py-20 md:py-28">
+      <div className="mx-auto max-w-[640px] px-6 sm:px-8 py-12 sm:py-20 md:py-28">
         <HeroSection title={hero.title} subtitle={hero.subtitle} />
         <IntroSection text={intro.text} />
 
@@ -106,7 +93,6 @@ const Index = () => {
           ))}
         </div>
 
-        <ConnectingSection heading={connecting.heading} text={connecting.text} />
         <FollowSection heading={follow.heading} links={follow.links} />
         <FooterSection name={footer.name} year={new Date().getFullYear()} />
       </div>
