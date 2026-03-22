@@ -9,7 +9,7 @@ interface FollowSectionProps {
 }
 
 export const FollowSection = ({ heading, links }: FollowSectionProps) => (
-  <section className="mb-20 sm:mb-24">
+  <section className="mt-20 sm:mt-28 mb-20 sm:mb-24">
     <h2 className="font-serif text-lg sm:text-xl font-normal text-foreground">
       {heading}
     </h2>
