@@ -9,17 +9,17 @@ import { usePageSections } from "@/hooks/usePageSections";
 
 const defaults: Record<string, any> = {
   hero: {
-    title: "Gareth Parkin",
+    title: "Gareth Cadwallader",
     subtitle: "",
   },
   intro: {
-    text: "I'm building a small set of projects across media, technology, and storytelling. This is a collection of what I'm working on — a podcast, an education platform, and a fiction series. Each is at a different stage. All are ongoing.",
+    text: "I'm working on a few projects that will be releasing at different points through the year. This page is the single source of truth — links to every website, platform, and social channel in one place. If you find something worth following, I'd love you to like, comment, and subscribe. If you want to get in touch directly, email me or connect on LinkedIn.",
   },
   project_1: {
     title: "Sandalwood & Sage",
-    tagline: "A short-form debate podcast",
+    tagline: "Short-form, evidence-led debates under 15 minutes",
     description:
-      "Two AI-generated presenters. One topic. Both sides, argued properly. Episodes run under fifteen minutes — long enough to be substantive, short enough to respect your time.",
+      "Two AI-generated presenters. One topic. Both sides, argued properly. Episodes run under fifteen minutes — structured, balanced, and worth your time.",
     primaryLink: { label: "Listen on Spotify", href: "#" },
     secondaryLinks: [
       { label: "Apple Podcasts", href: "#" },
@@ -31,7 +31,7 @@ const defaults: Record<string, any> = {
     title: "The Founder's Academy",
     tagline: "A platform for SaaS founders",
     description:
-      "Practical lessons, honest conversations, and real operator insight — drawn from building, scaling, and exiting a SaaS business. Built for founders who want substance over noise.",
+      "Practical lessons and honest insight drawn from building, scaling, and exiting a SaaS business. For founders who want substance over noise.",
     primaryLink: { label: "Find out more", href: "#" },
     secondaryLinks: [],
   },
@@ -46,11 +46,11 @@ const defaults: Record<string, any> = {
   follow: {
     heading: "",
     links: [
-      { label: "LinkedIn", href: "#" },
-      { label: "Contact", href: "mailto:hello@example.com" },
+      { label: "LinkedIn", href: "https://www.linkedin.com/in/gareth-m-cadwallader-369980354/" },
+      { label: "Email", href: "mailto:gareth@thefourashes.com" },
     ],
   },
-  footer: { name: "Gareth Parkin" },
+  footer: { name: "Gareth Cadwallader" },
 };
 
 // ─── PAGE ────────────────────────────────────────────
