@@ -10,7 +10,7 @@ import { usePageSections } from "@/hooks/usePageSections";
 const defaults: Record<string, any> = {
   hero: {
     title: "Gareth Cadwallader",
-    subtitle: "",
+    subtitle: "Technologist · Investor · Entrepreneur",
   },
   intro: {
     text: "I'm working on a few projects that will be releasing at different points through the year. This page is the single source of truth — links to every website, platform, and social channel in one place. If you find something worth following, I'd love you to like, comment, and subscribe. If you want to get in touch directly, email me or connect on LinkedIn.",
@@ -44,7 +44,7 @@ const defaults: Record<string, any> = {
     secondaryLinks: [],
   },
   follow: {
-    heading: "",
+    heading: "Connect",
     links: [
       { label: "LinkedIn", href: "https://www.linkedin.com/in/gareth-m-cadwallader-369980354/" },
       { label: "Email", href: "mailto:gareth@thefourashes.com" },
@@ -74,11 +74,11 @@ const Index = () => {
 
   return (
     <main className="min-h-screen bg-background text-foreground selection:bg-foreground/10">
-      <div className="mx-auto max-w-[640px] px-6 sm:px-8 py-12 sm:py-20 md:py-28">
+      <div className="mx-auto max-w-[480px] px-5 sm:px-6 py-10 sm:py-16">
         <HeroSection title={hero.title} subtitle={hero.subtitle} />
         <IntroSection text={intro.text} />
 
-        <div className="space-y-14 sm:space-y-20">
+        <div className="space-y-10 sm:space-y-12">
           {projects.map((project, i) => (
             <ProjectSection
               key={project.title}

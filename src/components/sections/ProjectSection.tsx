@@ -2,6 +2,7 @@ interface ProjectLink {
   label: string;
   href: string;
 }
+
 interface ProjectSectionProps {
   title: string;
   tagline: string;
@@ -11,6 +12,41 @@ interface ProjectSectionProps {
   secondaryLinks: ProjectLink[];
   index: number;
 }
+
+function LinkCard({ label, href, featured }: { label: string; href: string; featured?: boolean }) {
+  if (featured) {
+    return (
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="flex items-center gap-3 w-full px-4 py-3.5 rounded-2xl bg-foreground text-background hover:bg-foreground/85 transition-all duration-200 group"
+      >
+        <span className="w-7 h-7 rounded-lg bg-background/20 flex items-center justify-center text-[0.6875rem] font-semibold text-background/80 shrink-0 uppercase">
+          {label[0]}
+        </span>
+        <span className="flex-1 text-sm font-medium text-left">{label}</span>
+        <span className="text-background/50 group-hover:text-background/80 transition-colors text-sm">↗</span>
+      </a>
+    );
+  }
+
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="flex items-center gap-3 w-full px-4 py-3.5 rounded-2xl bg-card border border-white/70 hover:border-white hover:bg-white/80 transition-all duration-200 group shadow-sm"
+    >
+      <span className="w-7 h-7 rounded-lg bg-foreground/8 flex items-center justify-center text-[0.6875rem] font-semibold text-foreground/50 shrink-0 uppercase">
+        {label[0]}
+      </span>
+      <span className="flex-1 text-sm font-medium text-foreground text-left">{label}</span>
+      <span className="text-foreground/30 group-hover:text-foreground/60 transition-colors text-sm">↗</span>
+    </a>
+  );
+}
+
 export const ProjectSection = ({
   title,
   tagline,
@@ -18,56 +54,43 @@ export const ProjectSection = ({
   statusLine,
   primaryLink,
   secondaryLinks,
-  index,
-}: ProjectSectionProps) => (
-  <section className="group">
-    {/* Divider — editorial rule with section number */}
-    <div className="flex items-center gap-4 mb-8 sm:mb-10">
-      <span className="text-[0.6875rem] tabular-nums tracking-widest text-muted-foreground/50 font-sans">
-        {String(index).padStart(2, "0")}
-      </span>
-      <hr className="editorial-rule flex-1" />
-    </div>
-    <h2 className="font-serif text-[1.625rem] sm:text-[2rem] font-normal tracking-[-0.015em] text-foreground leading-[1.15]">
-      {title}
-    </h2>
-    <p className="mt-3 text-[0.8125rem] sm:text-sm tracking-[0.08em] uppercase text-muted-foreground font-sans font-medium">
-      {tagline}
-    </p>
-    <p
-      className="mt-5 sm:mt-6 text-[0.9375rem] sm:text-base leading-[1.8] text-foreground/70 max-w-[580px]"
-      style={{ textWrap: "pretty" }}
-    >
-      {description}
-    </p>
-    {statusLine && <p className="mt-3 text-[0.8125rem] italic text-muted-foreground/70 font-serif">{statusLine}</p>}
-    {(primaryLink || secondaryLinks.length > 0) && (
-      <div className="mt-7 sm:mt-8 flex flex-wrap items-baseline gap-x-8 gap-y-3">
-        {primaryLink && (
-          <a
-            href={primaryLink.href}
-            className="link-underline inline-flex items-center gap-1.5 text-sm font-medium text-foreground transition-colors duration-300 hover:text-accent"
-          >
-            {primaryLink.label}
-            <span className="text-muted-foreground/50 transition-transform duration-300 group-hover:translate-x-0.5">
-              →
-            </span>
-          </a>
-        )}
-        {secondaryLinks.length > 0 && (
-          <span className="link-dot-separator flex flex-wrap items-center gap-x-3 gap-y-2">
-            {secondaryLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                className="text-[0.8125rem] text-muted-foreground/70 transition-colors duration-300 hover:text-foreground"
-              >
-                {link.label}
-              </a>
-            ))}
-          </span>
-        )}
-      </div>
-    )}
-  </section>
-);
+}: ProjectSectionProps) => {
+  const hasLinks = primaryLink || secondaryLinks.length > 0;
+
+  return (
+    <section>
+      {/* Section header — uppercase spaced caps */}
+      <h2 className="text-[0.625rem] tracking-[0.18em] uppercase font-sans font-semibold text-muted-foreground/70 mb-4">
+        {title}
+      </h2>
+
+      {tagline && (
+        <p className="text-[0.8125rem] text-muted-foreground/80 font-sans mb-3">{tagline}</p>
+      )}
+
+      {description && (
+        <p
+          className="text-[0.9375rem] leading-[1.75] text-foreground/70 mb-5"
+          style={{ textWrap: "pretty" } as React.CSSProperties}
+        >
+          {description}
+        </p>
+      )}
+
+      {statusLine && (
+        <p className="mb-5 text-[0.8125rem] italic text-muted-foreground/70 font-serif">{statusLine}</p>
+      )}
+
+      {hasLinks && (
+        <div className="space-y-2.5">
+          {primaryLink && (
+            <LinkCard label={primaryLink.label} href={primaryLink.href} featured />
+          )}
+          {secondaryLinks.map((link) => (
+            <LinkCard key={link.label} label={link.label} href={link.href} />
+          ))}
+        </div>
+      )}
+    </section>
+  );
+};
