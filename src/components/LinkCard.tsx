@@ -6,6 +6,7 @@ const ICON_MAP: { match: string; path: string }[] = [
   { match: "linkedin",        path: "/icons/Linked.svg" },
   { match: "instagram",       path: "/icons/Instagram.svg" },
   { match: "website",         path: "/icons/Website.svg" },
+  { match: "email",           path: "/icons/email.svg" },
 ];
 
 function resolveIcon(label: string): string | null {

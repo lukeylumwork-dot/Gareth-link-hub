@@ -47,7 +47,7 @@ const defaults: Record<string, any> = {
     heading: "Connect",
     links: [
       { label: "LinkedIn", href: "https://www.linkedin.com/in/gareth-m-cadwallader-369980354/" },
-      { label: "Email", href: "mailto:gareth@thefourashes.com" },
+      { label: "Email", href: "mailto:gareth.cadwallder@fourashes.com" },
     ],
   },
   footer: { name: "Gareth Cadwallader" },
