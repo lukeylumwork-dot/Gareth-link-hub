@@ -22,6 +22,10 @@ interface LinkCardProps {
 
 export function LinkCard({ label, href, featured }: LinkCardProps) {
   const iconPath = resolveIcon(label);
+  const isPlaceholder = href === "#" || href === "";
+  const targetProps = isPlaceholder
+    ? {}
+    : { target: "_blank", rel: "noopener noreferrer" };
 
   const icon = iconPath ? (
     <img src={iconPath} alt="" aria-hidden="true" className="w-5 h-5 object-contain" />
@@ -33,8 +37,7 @@ export function LinkCard({ label, href, featured }: LinkCardProps) {
     return (
       <a
         href={href}
-        target="_blank"
-        rel="noopener noreferrer"
+        {...targetProps}
         className="flex items-center gap-3 w-full px-4 py-3.5 rounded-2xl bg-foreground text-background hover:bg-foreground/85 transition-all duration-200 group"
       >
         <span className="w-7 h-7 rounded-lg bg-background/15 flex items-center justify-center shrink-0">
@@ -49,8 +52,7 @@ export function LinkCard({ label, href, featured }: LinkCardProps) {
   return (
     <a
       href={href}
-      target="_blank"
-      rel="noopener noreferrer"
+      {...targetProps}
       className="flex items-center gap-3 w-full px-4 py-3.5 rounded-2xl bg-card border border-white/70 hover:border-white hover:bg-white/80 transition-all duration-200 group shadow-sm"
     >
       <span className="w-7 h-7 rounded-lg bg-foreground/8 flex items-center justify-center shrink-0">
