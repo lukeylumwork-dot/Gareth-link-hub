@@ -13,6 +13,9 @@ interface ProjectSectionProps {
   primaryLink: ProjectLink | null;
   secondaryLinks: ProjectLink[];
   index: number;
+  audioUrl?: string;
+  videoUrl?: string;
+  visible?: boolean;
 }
 
 export const ProjectSection = ({
@@ -22,7 +25,11 @@ export const ProjectSection = ({
   statusLine,
   primaryLink,
   secondaryLinks,
+  audioUrl,
+  videoUrl,
+  visible = true,
 }: ProjectSectionProps) => {
+  if (!visible) return null;
   const hasLinks = primaryLink || secondaryLinks.length > 0;
 
   return (
@@ -46,6 +53,18 @@ export const ProjectSection = ({
 
       {statusLine && (
         <p className="mb-5 text-[0.8125rem] italic text-muted-foreground/70 font-serif">{statusLine}</p>
+      )}
+
+      {audioUrl && (
+        <div className="mb-4">
+          <audio controls src={audioUrl} className="w-full h-10 rounded-lg" />
+        </div>
+      )}
+
+      {videoUrl && (
+        <div className="mb-4 rounded-2xl overflow-hidden">
+          <video controls src={videoUrl} className="w-full" />
+        </div>
       )}
 
       {hasLinks && (
